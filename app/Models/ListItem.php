@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class ListItem extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['title', 'user_id'];
+
+    public function user()
+    {
+        return $this->belongsTo(related:User::class);
+    }
 }
