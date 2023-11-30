@@ -22,6 +22,7 @@ class ListItemController extends Controller
     public function create()
     {
         //
+        return view('listitems.create');
     }
 
     /**
@@ -30,6 +31,13 @@ class ListItemController extends Controller
     public function store(StoreListItemRequest $request)
     {
         //
+        $request->validate([
+            'user_id' => 'required',
+            'title' => 'required'
+        ]);
+        ListItem::create($request->all());
+
+        return redirect()->route('listItems.index')->with('success', 'Todo item created successfully');
     }
 
     /**
